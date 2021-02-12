@@ -1,0 +1,68 @@
+<div class="row pt-5">
+    <div class="col-md-6 mx-auto">
+
+        <div class="card ">
+
+            <div class="card-header">
+                <h3 class="mb-0 text-center">Login</h3>
+            </div>
+
+            <div class="card-body">
+
+                <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+
+                    <div class="form-group">
+                        <label for="username" class="col-md-6 mx-5">Username</label>
+                        <input type="text" formControlName="username" class="form-control col-md-8 mx-5"
+                            placeholder="Enter Username" id="username" name="Username" [ngClass]="
+                     {
+                         'is-invalid' : loginForm.get('username').invalid && (loginForm.get('username').dirty 
+                         || loginForm.get('username').touched || submitted),
+
+                         'is-valid' : loginForm.get('username').valid && (loginForm.get('username').dirty 
+                         || loginForm.get('username').touched || submitted  )
+                          }">
+
+                        <span class="text-danger " *ngIf="loginForm.get('username').invalid 
+                          && (loginForm.get('username').dirty || loginForm.get('username').touched || submitted )
+                         && loginForm.get('username').errors?.required">Username can't be blank</span>
+
+
+                        <span class="text-danger" *ngIf="loginForm.get('username').invalid 
+                          && (loginForm.get('username').dirty || loginForm.get('username').touched || submitted )
+                         && loginForm.get('username').errors?.email">Invalid Username</span>
+
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="col-md-6 mx-5">Password</label>
+                        <input type="password" class="form-control col-md-8 mx-5" placeholder="Enter password"
+                            id="password" name="password" formControlName="password" [ngClass]="
+                     {
+                         'is-invalid' : loginForm.get('password').invalid && (loginForm.get('password').dirty 
+                         || loginForm.get('password').touched  || submitted),
+
+                         'is-valid' : loginForm.get('password').valid && (loginForm.get('password').dirty 
+                         || loginForm.get('password').touched  || submitted )
+                          }">
+
+                        <span class="text-danger " *ngIf="loginForm.get('password').invalid 
+                          && (loginForm.get('password').dirty || loginForm.get('password').touched || submitted )
+                         && loginForm.get('password').errors?.required">password can't be blank</span>
+
+
+                        <span class="text-danger" *ngIf="loginForm.get('password').invalid 
+                          && (loginForm.get('password').dirty || loginForm.get('password').touched || submitted )
+                         && loginForm.get('password').errors?.minlength">password should contain atleast 6
+                            characters</span>
+                    </div>
+
+                    <button class="btn btn-success float-right" type="submit">Login</button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
